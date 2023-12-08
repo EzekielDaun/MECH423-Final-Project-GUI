@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "mech423-final-project-gui"
+version = "0.1.0"
+description = ""
+authors = ["EzekielDaun <liuyifei0905@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12, <3.13"
+darkdetect = "^0.8.0"
+pyqtgraph = "^0.13.3"
+pyside6 = "^6.6.1"
+loguru = "^0.7.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
