@@ -73,7 +73,7 @@ class Lab3MainWindowCentralWidget(QWidget):
         self.__tick_spin_box = QSpinBox()
         self.__tick_spin_box.setPrefix("Detent: ")
         self.__tick_spin_box.setMinimum(0)
-        self.__tick_spin_box.setMaximum(9)
+        self.__tick_spin_box.setMaximum(35)
         self.__tick_spin_box.valueChanged.connect(self.__slot_on_tick_change)
 
         self.__velocity_mode_button = QPushButton("Velocity Mode")
@@ -203,12 +203,14 @@ class Lab3MainWindowCentralWidget(QWidget):
 
     def __slot_on_serial_write(self, message: bytearray):
         self.__serial_port.write(message)
-        logger.debug(
-            f"serial_bytes: {", ".join([x+y for (x,y) in (batched(message.hex().upper(),2))])}"
+        hex_string = ", ".join(
+            [x + y for (x, y) in (batched(message.hex().upper(), 2))]
         )
+        logger.debug(f"serial_bytes: {hex_string}")
 
     def __slot_on_tick_change(self, value):
-        self.__serial_port.write(f"{value}".encode("ascii"))
+        base_36_c = np.base_repr(value, 36)
+        self.__serial_port.write(f"{base_36_c}".encode("ascii"))
 
     def __slot_on_velocity_mode(self):
         self.__serial_port.write(b"v")
