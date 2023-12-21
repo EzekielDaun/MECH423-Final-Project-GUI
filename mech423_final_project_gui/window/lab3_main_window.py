@@ -189,9 +189,9 @@ class Lab3MainWindowCentralWidget(QWidget):
                     x=[0, elec_plot_mech_x], y=[0, elec_plot_mech_y]
                 )
 
-                I_u = -float(match.group("I_u")) / 200
-                I_v = -float(match.group("I_v")) / 200
-                I_w = -float(match.group("I_w")) / 200
+                I_u = -float(match.group("I_u")) / 400
+                I_v = -float(match.group("I_v")) / 400
+                I_w = -float(match.group("I_w")) / 400
 
                 I_x = I_u - I_v / 2 - I_w / 2
                 I_y = np.sqrt(3) / 2 * (I_v - I_w)
